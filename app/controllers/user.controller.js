@@ -59,6 +59,38 @@ exports.findOne = (req, res) => {
           .send({ message: "Error retrieving User Data with id=" + id });
       });
 };
+// Find a single User Data with an AccountNumber
+exports.findAccountNum = (req, res) => {
+  const accountNum= req.params.accountNumber;
+  User.find({accountNumber : accountNum })
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Not found User Data with Account Number " + accountNumber });
+      else res.send(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving User Data with Account Number =" + accountNumber });
+    });
+};
+
+// Find a single User Data with an IdentityNumber
+exports.findIdentityNum = (req, res) => {
+  const identityNum = req.params.identityNumber;
+  User.find({identityNumber: identityNum})
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Not found User Data with Identity Number " + identityNumber });
+      else res.send(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving User Data with Identity Number=" + identityNumber });
+    });
+};
+
 // Update a User Data by the id in the request
 exports.update = (req, res) => {
     if (!req.body) {

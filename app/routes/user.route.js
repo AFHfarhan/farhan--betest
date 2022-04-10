@@ -7,6 +7,10 @@ module.exports = app => {
     router.get("/", users.findAll);
     // Retrieve a single User Data with id
     router.get("/:id", users.findOne);
+    // Retrieve a single User Data with AccountNumber
+    router.get("/accountnum/:accountNumber", users.findAccountNum);
+    // Retrieve a single User Data with IdentityNumber
+    router.get("/identitynum/:identityNumber", users.findIdentityNum);
     // Update a User Data with id
     router.put("/:id", users.update);
     // Delete a User Data with id
